@@ -25,7 +25,8 @@ private:
 	BYTE clientKey;
 	TESObjectREFR* refHolder { nullptr };
 	Timer periodicTimeCheckUtilities, positionTimer, inactivityTimer, connectTimer, databaseTimer, npcTimer, questTimer, cellTimer, lockTimer;
-	int newX, newY, newZ, rNewX, rNewY, rNewZ, activationId;
+	int activationId;
+	float newX, newY, newZ, rNewX, rNewY, rNewZ;
 
 public:
 	SkyUtility() = default;
