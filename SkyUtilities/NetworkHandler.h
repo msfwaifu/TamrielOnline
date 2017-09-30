@@ -1175,12 +1175,13 @@ public:
 
 			Hashtable hashData = ValueObject<Hashtable>(eventContent).getDataCopy();
 
-			int x = ValueObject<int>(hashData.getValue(0)).getDataCopy(), 
-				y = ValueObject<int>(hashData.getValue(1)).getDataCopy(), 
-				z = ValueObject<int>(hashData.getValue(2)).getDataCopy(), 
-				xRot = ValueObject<int>(hashData.getValue(3)).getDataCopy(),
-				yRot = ValueObject<int>(hashData.getValue(4)).getDataCopy(),
-				zRot = ValueObject<int>(hashData.getValue(5)).getDataCopy();
+			float x = ValueObject<float>(hashData.getValue(0)).getDataCopy(), 
+				y = ValueObject<float>(hashData.getValue(1)).getDataCopy(), 
+				z = ValueObject<float>(hashData.getValue(2)).getDataCopy();
+			
+			short xRot = ValueObject<short>(hashData.getValue(3)).getDataCopy(),
+				yRot = ValueObject<short>(hashData.getValue(4)).getDataCopy(),
+				zRot = ValueObject<short>(hashData.getValue(5)).getDataCopy();
 
 			OnLocationUpdate();
 
@@ -1550,16 +1551,16 @@ public:
 	}
 
 	// Update other players of changes to the local player's position/location.
-	inline static void SendModifiedPosition(int x, int y, int z, int xRot, int yRot, int zRot)
+	inline static void SendModifiedPosition(float x, float y, float z, short xRot, short yRot, short zRot)
 	{
 		Hashtable hashData = Hashtable();
 
-		hashData.put<int, int>(0, x);
-		hashData.put<int, int>(1, y);
-		hashData.put<int, int>(2, z);
-		hashData.put<int, int>(3, xRot);
-		hashData.put<int, int>(4, yRot);
-		hashData.put<int, int>(5, zRot);
+		hashData.put<int, float>(0, x);
+		hashData.put<int, float>(1, y);
+		hashData.put<int, float>(2, z);
+		hashData.put<int, short>(3, xRot);
+		hashData.put<int, short>(4, yRot);
+		hashData.put<int, short>(5, zRot);
 
 		Networking::instance->sendEvent<Hashtable>(false, hashData, NetworkState::EV::ID_POSITION_UPDATE, NetworkState::CHANNEL::EVENT);
 	}
